@@ -1,0 +1,288 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'MicrosoftYaHei';
+  src: url(../font/MSYH.TTC);
+}
+@font-face {
+    font-family: 'MicrosoftYaHeiBD';
+    src: url(../font/MSYHBD.TTC);
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+    
+html {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+body {
+    font-family: "MicrosoftYaHei", "Arial", sans-serif;
+    margin: 0;
+    padding: 20px 24px;
+    background-color: #1B2024;
+    width: 1920px;
+    height: 1080px;
+    font-size: 14px;
+    color: #fff;
+    // background-image: url(../image/bg2.png);
+    background-image: linear-gradient(to bottom,#1C4FBB, #021025);
+    background-size: 1920px 1080px;
+    // overflow: hidden;
+}
+  
+div {
+    box-sizing: border-box;
+}
+  
+a {
+    text-decoration: none;
+}
+
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    content: "";
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    clear: both;
+    height: 0;
+}
+
+header {
+    font-size: 40px;
+    padding-left: 6px;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 10;
+    .header-title {
+        font-family: 'MicrosoftYaHeiBD';
+        line-height: 52px;
+        display: inline-block;
+        span {
+            font-size: 24px;
+            font-family: 'MicrosoftYaHei';
+        }
+    }
+    .header-time {
+        float: right;
+        font-size: 24px;
+        margin-top: 15px;
+        line-height: 22px;
+    }
+    .menu-icon {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: url(../image/menu.png);
+        margin-left: 25px;
+        margin-right: 12px;
+    }
+    i {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-left: 2px solid #fff;
+        border-top: 2px solid #fff;
+        transform: rotate(-135deg);
+        position: relative;
+        top: -6px;
+    }
+}
+.menu-wrap {
+    width: 0px;
+    height: 100%;
+    background: #000C1D;
+    box-shadow: -10px 0 15px 0 rgba(0,0,0,0.40), inset 1px 0 0 0 #001E49;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    overflow: hidden;
+    .menu-icon {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        background: url(../image/menu-open.png);
+        margin-bottom: 25px;
+        margin: 25px 22px;
+    }
+    .menu-item {
+        display: block;
+        height: 70px;
+        line-height: 70px;
+        font-size: 20px;
+        color: #fff;
+        padding-left: 22px;
+        &.active {
+            background: #005DC9;
+        }
+        i {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 16px;
+        }
+        span {
+            vertical-align: middle;
+        }
+        .finance {
+            background: url(../image/finance.png);
+        }
+        .sale {
+            background: url(../image/sale.png);
+        }
+        .service {
+            background: url(../image/service.png);
+        }
+        .statistic {
+            background: url(../image/statistic.png);
+        }
+    }
+}
+
+.gradient-number,
+    .gradient-number .scoreitem,
+    .gradient-number .scorespace,
+    .gradient-number .decimalspace,
+    .gradient-number span
+    {
+        background-image: -webkit-linear-gradient(bottom,#FF9300,#FFFF00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+.score {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    height: 48px;
+    line-height: 48px;
+}
+.score ul, .score .decimalspace {
+    float: left;
+}
+
+.block-title {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'MicrosoftYaHeiBD';
+    line-height: 26px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #008FFC;
+}
+.block-title-tabs-wrap {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    a {
+        display: inline-block;
+        width: 65px;
+        text-align: right;
+        color: #93B0EB;
+        font-size: 14;
+    }
+    a.active {
+        color: #fff;
+    }
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right,#fff, rgba(255, 255, 255, 0));
+    position: relative;
+    top: -1px;
+    z-index: -1;
+    margin-bottom: 16px;
+}
+
+.top-number-bar {
+    background: rgba(0, 0, 0, 0.45);
+    padding-top: 30px;
+    padding-bottom: 22px;
+    font-size: 18px;
+    box-shadow: 10px 30px 40px 0 rgba(0,0,0,0.32);
+    display: flex;
+    justify-content: space-around;
+    .item {
+        flex: 1;
+        text-align: center;
+        .title {
+            margin-bottom: 11px;
+            line-height: 24px;
+        }
+        .number {
+            font-size: 40px;
+            line-height: 48px;
+            
+        }
+    } 
+}
+.block-title-image {
+    text-align: center;
+    font-family: MicrosoftYaHeiBD;
+    margin-bottom: 32px;
+    font-size: 16px;
+    line-height: 22px;
+    &::before, &::after {
+        content: '';
+        display: inline-block;
+        width: 44px;
+        height: 4px;
+        position: relative;
+        top: -5px;
+    }
+    &::before {
+        background: url('../image/point-line-l.png');
+        margin-right: 8px;
+    }
+    &::after {
+        background: url('../image/point-line-r.png');
+        margin-left: 8px;
+    }
+}
+.project-info {
+    .info-detail {
+        .company {
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 700;
+            font-family: 'MicrosoftYaHeiBD';
+        }
+        .info-item {
+            font-size: 16px;
+            line-height: 21px;
+            margin-top: 10px;
+            .location {
+                margin-left: 16px;
+                color: #FFCC00;
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    background: url(../image/location.png);
+                    vertical-align: middle;
+                    margin-right: 8px;
+                }
+            }
+            .value {
+                color: #FFCC00;
+                margin-right: 32px;
+            }
+        }
+    }
+}
