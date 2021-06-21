@@ -318,7 +318,6 @@ function initMap() {
     data[0].selected = true;
     function getOptions({map= 'china', mapData, min, max, left=20, scatterData, scatterLabel}) {
         let intev = (max - min) / 5;
-        console.log('**', mapData)
         return {
             geo: [{
                 map: map,
@@ -480,7 +479,8 @@ function initMap() {
     function clear(data) {
         clearInterval(mapInterval)
         data[prev].selected = false;
-        console.log(data, prev);
+        data[i].selected = false;
+        console.log(data, prev, i, totalData.mapData[name]);
         i = 1;
         prev = 0;
     };
@@ -519,27 +519,29 @@ function initMap() {
 
                 $('#J_map_icon').on('click', function() {
                     mapInterval && clear(provinceData);
-                    mapType = 'china';
-
+                    
+                    let newData = totalData.mapData[name];
+                    
                     let options = getOptions({
-                        mapData: data,
+                        mapData: newData,
                         min: 0,
-                        max: getMax(data),
+                        max: getMax(newData),
                         scatterData: [{
-                            name: data[0].name,
-                            value: data[0].coord,
-                            total: data[0].value
+                            name: newData[0].name,
+                            value: newData[0].coord,
+                            total: newData[0].value
                         }],
                         scatterLabel: {
                             title: scatterMap[name].title, 
                             unit: scatterMap[name].unit
                         }
                     });
-                    data[0].selected = true;
+                    newData[0].selected = true;
                     
                     map.setOption(options);
-                    loop(data, options);
+                    loop(newData, options);
                     $('#J_map_icon').hide();
+                    mapType = 'china';
                 });
             });
         }
@@ -547,7 +549,6 @@ function initMap() {
 
     function getProvinceData(province, name) {
         let res = totalData.mapData[name].filter(item => item.name == province);
-        console.log(res)
         return res[0].cityData;
     }
 
@@ -584,7 +585,7 @@ function initMap() {
             },
             left: mapType == 'china' ? 20: 'right'
         });
-        console.log(newOptions)
+        console.log('^^^^^', newOptions)
         map.setOption(newOptions);
         loop(newData, newOptions);
 
