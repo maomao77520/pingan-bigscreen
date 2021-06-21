@@ -313,6 +313,7 @@ function initCenterNumber() {
     
 }
 
+
 function initMap() {
     let data = totalData.mapData.year;
     data[0].selected = true;
@@ -480,7 +481,7 @@ function initMap() {
         clearInterval(mapInterval)
         data[prev].selected = false;
         data[i].selected = false;
-        console.log(data, prev, i, totalData.mapData[name]);
+        console.log('%%%%%', data, prev, i);
         i = 1;
         prev = 0;
     };
@@ -560,34 +561,76 @@ function initMap() {
         $(this).addClass('active');
 
         mapInterval & clear(mapType == 'china' ? data : provinceData);
-        
+        debugger
         name = $(this).data('name');
+        let newOptions;
+        if (mapType == 'china') {
+            data = totalData.mapData[name];
+            newOptions = getOptions({
+                map: mapType,
+                mapData: data,
+                min: 0,
+                max: getMax(data),
+                scatterData: [{
+                    name: data[0].name,
+                    value: data[0].coord,
+                    total: data[0].value
+                }],
+                scatterLabel: {
+                    title: scatterMap[name].title, 
+                    unit: scatterMap[name].unit
+                },
+                left: mapType == 'china' ? 20: 'right'
+            });
+            data[0].selected = true;
+            console.log(data);
+            debugger
+            map.setOption(newOptions);
+            loop(data, newOptions);
+        } else {
+            provinceData = getProvinceData(mapType, name);
+            newOptions = getOptions({
+                map: mapType,
+                mapData: provinceData,
+                min: 0,
+                max: getMax(provinceData),
+                scatterData: [{
+                    name: provinceData[0].name,
+                    value: provinceData[0].coord,
+                    total: provinceData[0].value
+                }],
+                scatterLabel: {
+                    title: scatterMap[name].title, 
+                    unit: scatterMap[name].unit
+                },
+                left: mapType == 'china' ? 20: 'right'
+            });
+            provinceData[0].selected = true;
+            map.setOption(newOptions);
+            loop(provinceData, newOptions);
+        }
         
-        let newData = mapType == 'china' ? totalData.mapData[name] : getProvinceData(mapType, name);
-        
-        
-        console.log(mapType, newData)
-
-        newData[0].selected = true;
-        let newOptions = getOptions({
-            map: mapType,
-            mapData: newData,
-            min: 0,
-            max: getMax(newData),
-            scatterData: [{
-                name: newData[0].name,
-                value: newData[0].coord,
-                total: newData[0].value
-            }],
-            scatterLabel: {
-                title: scatterMap[name].title, 
-                unit: scatterMap[name].unit
-            },
-            left: mapType == 'china' ? 20: 'right'
-        });
-        console.log('^^^^^', newOptions)
-        map.setOption(newOptions);
-        loop(newData, newOptions);
+        // let newData = mapType == 'china' ? totalData.mapData[name] : getProvinceData(mapType, name);
+        // newData[0].selected = true;
+        // let newOptions = getOptions({
+        //     map: mapType,
+        //     mapData: newData,
+        //     min: 0,
+        //     max: getMax(newData),
+        //     scatterData: [{
+        //         name: newData[0].name,
+        //         value: newData[0].coord,
+        //         total: newData[0].value
+        //     }],
+        //     scatterLabel: {
+        //         title: scatterMap[name].title, 
+        //         unit: scatterMap[name].unit
+        //     },
+        //     left: mapType == 'china' ? 20: 'right'
+        // });
+        // console.log('^^^^^', newOptions)
+        // map.setOption(newOptions);
+        // loop(newData, newOptions);
 
     });
 }
