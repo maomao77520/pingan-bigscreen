@@ -6,7 +6,7 @@ import base from '../lib/base.js';
 
 import totalData from './financeData.js';
 
-const INTERVAL = 1000000;
+const INTERVAL = 10000;
 const ICON = 'image://../image/icon.png';
 const ACICON = 'image://../image/icon-l-active.png';
 
