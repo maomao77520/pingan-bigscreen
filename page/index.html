@@ -21,32 +21,32 @@
     </header>
     <div class="menu-wrap" id="J_menu">
         <div class="menu-icon"></div>
-        <a class="menu-item">
+        <a class="menu-item active">
+            <i class="statistic"></i>
+            <span>总览分析</span>
+        </a>
+        <a class="menu-item" href="./finance.html">
             <i class="finance"></i>
             <span>资产分析</span>
         </a>
-        <a class="menu-item">
+        <a class="menu-item" href="./manage.html">
             <i class="sale"></i>
             <span>经营分析</span>
         </a>
-        <a class="menu-item active">
+        <a class="menu-item" href="./service.html">
             <i class="service"></i>
             <span>车主服务</span>
-        </a>
-        <a class="menu-item">
-            <i class="statistic"></i>
-            <span>统计分析</span>
         </a>
     </div>
 
     <div class="content clearfix">
         <div class="left">
             <div class="top-number-bar number-box-shadow">
-                <div class="item">
+                <div class="item" style="width: 120px; flex: none;">
                     <div class="title">已点亮省份</div>
                     <div class="number gradient-number score province"></div>
                 </div>
-                <div class="item">
+                <div class="item" style="width: 150px; flex: none;">
                     <div class="title">项目数(个)</div>
                     <div class="number gradient-number score project"></div>
                 </div>
@@ -61,6 +61,10 @@
                 <div class="item">
                     <div class="title">服务车主数(万人)</div>
                     <div class="number gradient-number score people"></div>
+                </div>
+                <div class="item">
+                    <div class="title">设备价值(万元)</div>
+                    <div class="number gradient-number score equipment"></div>
                 </div>
                 <div class="item">
                     <div class="title">累计收入(万元)</div>
@@ -165,6 +169,9 @@
             </div>
         </div>
     </div>
+
+    <a class="link-home" href="./home.html"></a>
+    
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/echarts.min.js"></script>
     <script type="text/javascript" src="../lib/doT.min.js"></script>

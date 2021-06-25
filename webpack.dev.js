@@ -52,12 +52,12 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        outputPath: 'images/', // 图片输出的路径
+                        outputPath: 'image/', // 图片输出的路径
                         limit: 10 * 1024 // <10kb 使用base64
                     }
                 }
             }, {
-                test: /\.(ttf|TTC)\??.*$/,
+                test: /\.(ttf|TTC|OTF)\??.*$/,
                 loader: 'url-loader?limit=50000&name=[path][name].[ext]'
             }
         ]

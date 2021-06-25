@@ -1,0 +1,83 @@
+// body {
+//     background-image: url(../image/bg0.png);
+//     background-size: 1920px 1080px;
+// }
+.home-wrap {
+    padding: 172px 105px;
+    .title {
+        // width: 1200px;
+        // height: 100px;
+        // margin: 0 auto;
+        font-family: 'YouSheBiaoTiHei';
+        font-size: 96px;
+        text-align: center;
+        // background-image: url(../image//home-title.jpg);
+    }
+    .item-wrap {
+        margin-top: 80px;
+        display: flex;
+        a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .icon {
+            width: 470px;
+            height: 314px;
+            background-position: center;
+            // border: 1px solid #fff;
+        }
+        .text {
+            height: 105px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .park {
+            .icon {
+                background-image: url(../image/home-park-active.png);
+            }
+            .text {
+                width: 183px;
+                background-image: url(../image/home-park-t.png);
+            }
+            &:active, &:visited {
+
+                .text {
+                    width: 251px;
+                    background-image: url(../image/home-park-t-active.png);
+                }
+            }
+        }
+        .station {
+            .icon {
+                background-image: url(../image/home-5g-active.png);
+            }
+            .text {
+                width: 183px;
+                background-image: url(../image/home-5g-t.png);
+            }
+            &:active, &:visited {
+                .text {
+                    width: 251px;
+                    background-image: url(../image/home-5g-t-active.png);
+                }
+            }
+        }
+        .ioc {
+            .icon {
+                background-image: url(../image/home-ioc-active.png);
+            }
+            .text {
+                width: 115px;
+                background-image: url(../image/home-ioc-t.png);
+            }
+            &:active, &:visited {
+                .text {
+                    width: 183px;
+                    background-image: url(../image/home-ioc-t-active.png);
+                }
+            }
+        }
+    }
+}

@@ -79,6 +79,7 @@
         }
         .list-ul {
             height: 300px;
+            overflow: hidden;
         }
         .list-title, .list-item {
             font-size: 0;
@@ -86,11 +87,15 @@
             span {
                 display: inline-block;
                 font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
         .list-title {
             line-height: 22px;
-            margin-bottom: 12px;
+            height: 22px;
+            margin-bottom: 8px;
         }
         .list-item {
             height: 30px;
@@ -159,6 +164,7 @@
             }
         }
         .slide-icon {
+            display: block;
             width: 44px;
             height: 44px;
             margin: 20px auto 0;

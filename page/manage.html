@@ -21,7 +21,11 @@
     </header>
     <div class="menu-wrap" id="J_menu">
         <div class="menu-icon"></div>
-        <a class="menu-item">
+        <a class="menu-item" href="./index.html">
+            <i class="statistic"></i>
+            <span>总览分析</span>
+        </a>
+        <a class="menu-item" href="./finance.html">
             <i class="finance"></i>
             <span>资产分析</span>
         </a>
@@ -29,13 +33,9 @@
             <i class="sale"></i>
             <span>经营分析</span>
         </a>
-        <a class="menu-item">
+        <a class="menu-item" href="./service.html">
             <i class="service"></i>
             <span>车主服务</span>
-        </a>
-        <a class="menu-item">
-            <i class="statistic"></i>
-            <span>统计分析</span>
         </a>
     </div>
 
@@ -99,11 +99,13 @@
                     <script id="J_list_tmp" type="text/x-dot-template">
                         {{~it:item:index}}
                             <li class="list-item">
-                                <span class="col1">{{=index + 1}}</span>
-                                <span class="col2">{{=item.name}}</span>
-                                <span class="col3">{{=item.province}}</span>
-                                <span class="col4">{{=item.city}}</span>
-                                <span class="col5">{{=item.total}}</span>
+                                <a>
+                                    <span class="col1">{{=index + 1}}</span>
+                                    <span class="col2">{{=item.name}}</span>
+                                    <span class="col3">{{=item.province}}</span>
+                                    <span class="col4">{{=item.city}}</span>
+                                    <span class="col5">{{=item.total}}</span>
+                                </a>
                             </li>
                         {{~}}
                     </script>
@@ -115,7 +117,7 @@
 
                     <div id="J_project_info"></div>
 
-                    <div class="slide-icon"></div>
+                    <a class="slide-icon"></a>
                 </div>
                 <script id="J_project_info_tmp" type="text/x-dot-template">
                     <div class="info-detail">
@@ -217,7 +219,7 @@
                 </div>
 
                 <div class="item-wrap" id="J_order_wrap" style="display: none;">
-                    <div class="box">
+                    <div class="box number-box-shadow">
                         <div class="block-title-image">今年</div>
                         <div class="flex">
                             <div class="item">
@@ -230,7 +232,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box">
+                    <div class="box number-box-shadow">
                         <div class="block-title-image">本月</div>
                         <div class="flex">
                             <div class="item">
@@ -243,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box">
+                    <div class="box number-box-shadow">
                         <div class="block-title-image">今日</div>
                         <div class="flex">
                             <div class="item">
@@ -274,6 +276,8 @@
 
         </div>
     </div>
+
+    <a class="link-home" href="./home.html"></a>
 
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/echarts.min.js"></script>

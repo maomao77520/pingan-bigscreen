@@ -6,7 +6,7 @@ import base from '../lib/base.js';
 
 import totalData from './financeData.js';
 
-const INTERVAL = 10000;
+const INTERVAL = 3000;
 const ICON = 'image://../image/icon.png';
 const ACICON = 'image://../image/icon-l-active.png';
 
@@ -305,7 +305,7 @@ $(document).ready(function() {
     map.setOption(mapOptions);
     console.log(mapOptions)
 
-    var i = 0, prev, prevMarkIndex;
+    var i = 0, prev = mapIndex, prevMarkIndex = markIndex;
     loop(mapData, mapOptions, totalData.data);
 
     let aniList = function () {
@@ -323,44 +323,51 @@ $(document).ready(function() {
     // 这几个变量 全局使用
     
     function loop(mapData, mapOptions, projectData) {
-        i = 0, prev = mapIndex, prevMarkIndex = markIndex;
+        i = 0;
         globalInterval && clearInterval(globalInterval);
+
+        if (projectData.length <= 1) {
+            return;
+        }
         globalInterval = setInterval(() => {
             i = (i + 1) % projectData.length;
             aniList();
             initRight(projectData[i]);
             let markIndex = getActiveIndex(markData, projectData[i].baseData.coord);
             let mapIndex = getActiveIndex(mapData, projectData[i].baseData.location);
-    
+            console.log('******', mapIndex, markIndex, prevMarkIndex, i)
+
             mapOptions.series[0].data[prev].selected = false;
             mapOptions.series[0].data[mapIndex].selected = true;
-    
             markData[markIndex].symbol = ACICON;
             markData[markIndex].symbolSize = [56, 66];
             markData[markIndex].symbolOffset = [0, -33];
             markData[prevMarkIndex].symbol = ICON;
+            markData[prevMarkIndex].symbolOffset = [0, -17];
             markData[prevMarkIndex].symbolSize = [29, 34];
     
             mapOptions.series[0].markPoint.data = markData;
-    
             map.setOption(mapOptions);
             prev = mapIndex;
             prevMarkIndex = markIndex;
-            
+            console.log(i, markData)
         }, INTERVAL);
     }
     
     function clear(data) {
+
         globalInterval && clearInterval(globalInterval);
         data[prev].selected = false;
-        // data[i].selected = false;
+        data[i].selected = false;
         markData[prevMarkIndex].symbol = ICON;
+        markData[prevMarkIndex].symbolOffset = [0, -17];
         markData[prevMarkIndex].symbolSize = [29, 34];
     }
     // 地图点击处理函数
     function handleChinaMapClick(param) {
         console.log(param);
         globalInterval && clear(mapData);
+        // debugger
         if (param.componentType == 'markPoint') { // 防止点到markPoint上被触发
             // 清除当前高亮，将点击地图块置为高亮
             mapOptions.series[0].data[prev].selected = false;
@@ -371,8 +378,10 @@ $(document).ready(function() {
                 mapOptions.series[0].data[prev].selected = false;
                 mapOptions.series[0].data[mapIndex].selected = true;
                 markData[markIndex].symbol = ACICON;
+                markData[markIndex].symbolOffset = [0, -33];
                 markData[markIndex].symbolSize = [56, 66];
                 markData[prevMarkIndex].symbol = ICON;
+                markData[prevMarkIndex].symbolOffset = [0, -17];
                 markData[prevMarkIndex].symbolSize = [29, 34];
                 mapOptions.series[0].markPoint.data = markData;
                 
@@ -409,6 +418,9 @@ $(document).ready(function() {
                 });
             }
         } else {
+            if (!param.data) {
+                return;
+            }
             let key = param.data.en;
             $.getScript(`../lib/map/${key}.js`, function() {
                 let pMapData = []
@@ -425,6 +437,7 @@ $(document).ready(function() {
                 pMapData[pMapIndex].selected = true;
                 markData[prevMarkIndex].symbol = ICON;
                 markData[prevMarkIndex].symbolSize = [29, 34];
+                markData[prevMarkIndex].symbolOffset = [0, -17];
                 markData[markIndex].symbol = ACICON;
                 markData[markIndex].symbolSize = [56, 66];
                 markData[markIndex].symbolOffset = [0, -33];
@@ -466,10 +479,15 @@ $(document).ready(function() {
                         mapData,
                         markData
                     });
-                    mapData[0].selected = true;
+                    mapData[mapIndex].selected = true;
                     map.setOption(mapOptions);
+                    prev = mapIndex;
+                    prevMarkIndex = markIndex;
+
                     loop(mapData, mapOptions, totalData.data);
                     map.on('click',  handleChinaMapClick);
+                    initLBList(totalData.data);
+                    initRight(totalData.data[0]);
                 });
             });
             
@@ -490,8 +508,10 @@ $(document).ready(function() {
                 mapOptions.series[0].data[mapIndex].selected = true;
                 markData[markIndex].symbol = ACICON;
                 markData[markIndex].symbolSize = [56, 66];
+                markData[markIndex].symbolOffset = [0, -33];
                 markData[prevMarkIndex].symbol = ICON;
                 markData[prevMarkIndex].symbolSize = [29, 34];
+                markData[prevMarkIndex].symbolOffset = [0, -17];
                 mapOptions.series[0].markPoint.data = markData;
                 
                 prev = mapIndex;
@@ -516,7 +536,7 @@ $(document).ready(function() {
         }
     }
 
-    $('.top-number-bar .project').score(230);
+    $('.top-number-bar .project').score(10);
     $('.top-number-bar .position').score(45090, {space: 3});
     $('.top-number-bar .total').score(87043, {space: 3});
  

@@ -272,7 +272,7 @@ function initBar() {
 }
 
 function initList() {
-    let data = totalData.listData.most
+    let data = totalData.listData.most;
 
     let tmp = doT.template($('#J_list_tmp').html());
     $('#J_list_wrap').html(tmp(data));
@@ -456,6 +456,9 @@ function initMap() {
     
     let i = 1, prev = 0;
     function loop(data, options) {
+        if (data.length <= 1) {
+            return;
+        }
         mapInterval && clear(data);
         mapInterval = setInterval(() => {
             options.series[0].data[prev].selected = false;
@@ -493,7 +496,6 @@ function initMap() {
     function clear(data) {
         clearInterval(mapInterval)
         data[prev].selected = false;
-        data[i].selected = false;
         i = 1;
         prev = 0;
     };

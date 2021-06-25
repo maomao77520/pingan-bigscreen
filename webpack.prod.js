@@ -16,7 +16,9 @@ function handleFile(entry) {
         js[item] = `./js/${item}`;
         html.push(new HtmlWebpackPlugin({
             template: `./page/${item}.html`,
-            filename: `./page/${item}.html`
+            filename: `./page/${item}.html`,
+            chunks: [item],
+            inject: 'body'
         }))
     });
     return {
@@ -30,8 +32,8 @@ module.exports = {
     mode: 'production',
     entry: f.js,
     output: {
-		path: path.join(__dirname, './dist'), // 出口目录，dist文件
-		publicPath: '/',
+		path: path.join(__dirname, './pingan_iot'), // 出口目录，pingan_iot文件
+		publicPath: '/pingan_iot/',
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
     },
@@ -55,13 +57,13 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        outputPath: 'images/', // 图片输出的路径
+                        outputPath: '/image', // 图片输出的路径
                         name: '[hash:8].[name].[ext]',
                         limit: 10 * 1024 // <10kb 使用base64
                     }
                 }
             }, {
-                test: /\.(ttf|TTC)\??.*$/,
+                test: /\.(ttf|TTC|OTF)\??.*$/,
                 loader: 'url-loader?limit=50000&name=[path][name].[ext]'
             }
         ]
@@ -71,17 +73,14 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [{
                 from: path.join(__dirname, './lib'),
-                to: path.join(__dirname, './dist/lib')
-            }, {
-                from: path.join(__dirname, './font'),
-                to: path.join(__dirname, './dist/font')
+                to: path.join(__dirname, './pingan_iot/lib')
             }, {
                 from: path.join(__dirname, './image'),
-                to: path.join(__dirname, './dist/image')
+                to: path.join(__dirname, './pingan_iot/image')
             }]
         }),
         new MiniCssExtractPlugin({
-            filename: "./css/[name].[chunkhash:8].css"
+            filename: "css/[name].[chunkhash:8].css"
         }),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify('production')

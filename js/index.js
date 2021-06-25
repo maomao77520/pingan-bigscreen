@@ -13,11 +13,12 @@ const ACICON = 'image://../image/icon-active.png';
 
 // 左上数字栏
 function initLTBar() {
-    $('.top-number-bar .province').score(28);
-    $('.top-number-bar .project').score(230);
+    $('.top-number-bar .province').score(2);
+    $('.top-number-bar .project').score(10);
     $('.top-number-bar .position').score(45090, {space: 3});
-    $('.top-number-bar .rate').score(90.60, {decimal: 2});
+    $('.top-number-bar .rate').score(90.6, {decimal: 1});
     $('.top-number-bar .people').score(75639, {space: 3});
+    $('.top-number-bar .equipment').score(5639, {decimal: 2});
     $('.top-number-bar .total').score(295639, {space: 3});
 }
 
@@ -26,15 +27,16 @@ function initLBList() {
     let tmp = doT.template($('#J_lb_list_tmp').html());
     $('#J_lb_list').html(tmp(totalData.listData));
 
+    
     let aniList = function () {
         var ul = $("#J_lb_list");
-        ul.animate({
+        ul.stop().animate({
             marginTop: - 30
         }, 1000 * 2, "linear", function () {
+            ul.find("li:eq(0)").appendTo(ul);
             ul.css({
                 marginTop: 0
             });
-            ul.find("li:eq(0)").appendTo(ul);
             aniList();
         });
     };
@@ -254,6 +256,7 @@ function initMap() {
             data: data,
             markPoint: {
                 symbol: ICON,
+                symbolOffset: [0, -17],
                 symbolSize: [29, 34],
                 label: {
                     show: false

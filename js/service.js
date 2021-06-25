@@ -10,14 +10,34 @@ const INTERVAL = 2000;
 const ICON = 'image://../image/icon.png';
 let interval;
 
-function initTopNumber({total, year, month, today}) {
-    $('#J_top_number .total').score(total, {decimal: 2});
-    $('#J_top_number .year').score(year, {decimal: 2});
-    $('#J_top_number .month').score(month, {space: 3});
-    $('#J_top_number .today').score(today, {space: 3});
+function initTopNumber(data) {
+    $('#J_number_tabs a').removeClass('active');
+    $('#J_number_tabs a').eq(0).addClass('active');
+       
+    $('#J_top_number .total').score(data.total.total, {decimal: 2});
+    $('#J_top_number .year').score(data.total.year, {decimal: 2});
+    $('#J_top_number .month').score(data.total.month, {space: 3});
+    $('#J_top_number .today').score(data.total.today, {space: 3});
+
+    $('#J_number_tabs a').on('click', function() {
+        $('#J_number_tabs a').removeClass('active');
+        $(this).addClass('active');
+        let name = $(this).data('name');
+
+        $('#J_top_number .item').each(function(i, n) {
+            var cl = $(this).find('.number').attr('class');
+            $(this).find('.number').remove();
+            $(this).append(`<div class="${cl}"></div>`);
+        });
+
+        $('#J_top_number .total').score(data[name].total, {decimal: 2});
+        $('#J_top_number .year').score(data[name].year, {decimal: 2});
+        $('#J_top_number .month').score(data[name].month, {space: 3});
+        $('#J_top_number .today').score(data[name].today, {space: 3});
+    });
 }
 
-function initLeftBar() {
+function initLeftBar(data) {
     let option = {
         grid: {
             top: 5,
@@ -27,7 +47,7 @@ function initLeftBar() {
         },
         yAxis: {
             type: 'category',
-            data: totalData.leftBar.most.category,
+            data: data.most.category,
             axisLabel: {
                 show: true,
                 fontSize: 12,
@@ -74,7 +94,7 @@ function initLeftBar() {
                     }]
                 }
             },
-            data: totalData.leftBar.most.data
+            data: data.most.data
         }]
     };
     let bar = echarts.init(document.getElementById('J_left_bar'));
@@ -84,8 +104,8 @@ function initLeftBar() {
         $('#J_bar_tabs a').removeClass('active');
         $(this).addClass('active');
         let name = $(this).data('name');
-        option.yAxis.data = totalData.leftBar[name].category;
-        option.series[0].data = totalData.leftBar[name].data;
+        option.yAxis.data = data[name].category;
+        option.series[0].data = data[name].data;
         bar.setOption(option);
     });
 
@@ -170,7 +190,7 @@ function getMapOptions({map = 'china', aspectScale=0.7, mapData, markData, scatt
             coordinateSystem: 'geo',
             symbol: 'image://../image/icon-l-active.png',
             symbolSize: [56, 66],
-            symbolOffset: [0, -33],
+            symbolOffset: [0, -30],
             data: scatterData,
             itemStyle: {
                 // color: 'rgba(0, 0, 0, 0)'
@@ -224,6 +244,7 @@ function initMap() {
     });
     let map = echarts.init(document.getElementById('J_map'));
     map.setOption(option);
+    console.log(option)
 
     loop(mapData, option);
     var i = 1, prev = 0, mapType = 'china', provinceData;
@@ -231,14 +252,17 @@ function initMap() {
     function clear(data) {
         clearInterval(interval)
         data[prev].selected = false;
-        data[i].selected = false;
         i = 1;
         prev = 0;
     };
     
     function loop(mapData, option) {
+        if (mapData.length <= 1) {
+            return;
+        }
         interval && clear(mapData);
         interval = setInterval(() => {
+            console.log(mapData, i)
             option.series[0].data[prev].selected = false;
             option.series[0].data[i].selected = true;
             option.series[1].data = [{
@@ -254,13 +278,17 @@ function initMap() {
 
     map.on('click',  handleMapClick);
     function handleMapClick(param) {
+        console.log(param)
         if (param.componentType == 'series') {
+            provinceData = param.data.cityData;
+            if (!provinceData) {
+                return;
+            }
             interval && clear(mapData);
             mapType = param.name;
             $.getScript(`../lib/map/${param.data.en}.js`, function() {
                 $('#J_map_icon').show();
-                provinceData = param.data.cityData;
-
+                
                 let provinceOptions = getMapOptions({
                     map: param.name,
                     mapData: provinceData,
@@ -274,7 +302,14 @@ function initMap() {
                 });
                 provinceData[0].selected = true;
                 map.setOption(provinceOptions);
+                console.log(provinceData)
                 loop(provinceData, provinceOptions);
+
+                initTopNumber(totalData.topData[param.data.en]);
+                initRightTop(totalData.rightTopData[param.data.en]);
+                initLine(totalData.lineData[param.data.en]);
+                initBars(totalData.barData[param.data.en]);
+                initPie(totalData.pieData[param.data.en]);
 
                 $('#J_map_icon').on('click', function() {
                     interval && clear(provinceData);
@@ -297,13 +332,19 @@ function initMap() {
                     loop(mapData, option);
                     $('#J_map_icon').hide();
                     mapType = 'china';
+
+                    initTopNumber(totalData.topData.china);
+                    initRightTop(totalData.rightTopData.china);
+                    initLine(totalData.lineData.china);
+                    initBars(totalData.barData.china);
+                    initPie(totalData.pieData.china);
                 });
             });
         }
     }
 }
 
-function initLine() {
+function initLine(data) {
     let option = {
         grid: {
             top: 30,
@@ -381,7 +422,7 @@ function initLine() {
                 symbol: ['none', 'none'],
                 label: {show: false},
             },
-            data: totalData.lineData.year
+            data: data.year
         }]
     };
     let line = echarts.init(document.getElementById('J_line'));
@@ -393,17 +434,20 @@ function initLine() {
         day: common.getHours()
     };
 
+    $('#J_line_tabs a').removeClass('active');
+    $('#J_line_tabs a').eq(0).addClass('active');
+
     $('#J_line_tabs a').on('click', function() {
         $('#J_line_tabs a').removeClass('active');
         $(this).addClass('active');
         let name = $(this).data('name');
         option.xAxis.data = mapper[name];
-        option.series[0].data = totalData.lineData[name];
+        option.series[0].data = data[name];
         line.setOption(option);
     });
 }
 
-function initBars() {
+function initBars(data) {
     function getOptions({category, data}) {
         return {
             grid: {
@@ -478,21 +522,18 @@ function initBars() {
     }
     let bar1 = echarts.init(document.getElementById('J_bar_1'));
     let bar2 = echarts.init(document.getElementById('J_bar_2'));
-    console.log(getOptions({
-        category: totalData.barData.hour.category,
-        data: totalData.barData.hour.data
-    }))
+
     bar1.setOption(getOptions({
-        category: totalData.barData.hour.category,
-        data: totalData.barData.hour.data
+        category: data.hour.category,
+        data: data.hour.data
     }));
     bar2.setOption(getOptions({
-        category: totalData.barData.month.category,
-        data: totalData.barData.month.data
+        category: data.month.category,
+        data: data.month.data
     }));
 }
 
-function initPie() {
+function initPie(data) {
     function getOptions({color, data}) {
         return {
             series: [{
@@ -518,33 +559,33 @@ function initPie() {
 
     let pie1 = echarts.init(document.getElementById('J_pie_1'));
     let pie2 = echarts.init(document.getElementById('J_pie_2'));
-    pie1.setOption(getOptions({color: ['#2ECC71', '#007AFF'], data: totalData.pieData.pie1}));
-    pie2.setOption(getOptions({color: ['#FF9500', '#2ECC71'], data: totalData.pieData.pie2}));
+    pie1.setOption(getOptions({color: ['#2ECC71', '#007AFF'], data: data.pie1}));
+    pie2.setOption(getOptions({color: ['#FF9500', '#2ECC71'], data: data.pie2}));
 }
+
+function initRightTop({averageOrder, averageinCome, hour, month}) {
+    $('.total-wrap .head-order').score(averageOrder, {space: 3});
+    $('.total-wrap .head-income').score(averageinCome, {decimal: 2});
+    $('.total-wrap .hour-order').score(hour.averageOrder, {space: 3});
+    $('.total-wrap .hour-income').score(hour.averageinCome, {decimal: 2});
+    $('.total-wrap .month-order').score(month.averageOrder, {space: 3});
+    $('.total-wrap .month-income').score(month.averageinCome, {decimal: 2});
+}
+
 $(document).ready(function() {
     common.headerTime();
     common.initMenu();
 
-    initLeftBar();
+    initLeftBar(totalData.leftBar);
     initMap();
 
-    initLine();
-    initBars();
-    initPie();
+    initRightTop(totalData.rightTopData.china);
+    initLine(totalData.lineData.china);
+    initBars(totalData.barData.china);
+    initPie(totalData.pieData.china);
 
-    initTopNumber(totalData.topData.total);
+    initTopNumber(totalData.topData.china);
 
-    $('#J_number_tabs a').on('click', function() {
-        $('#J_number_tabs a').removeClass('active');
-        $(this).addClass('active');
-        let name = $(this).data('name');
-        initTopNumber(totalData.topData[name]);
-    });
 
-    $('.total-wrap .head-order').score(323, {space: 3});
-    $('.total-wrap .head-income').score(523.32, {decimal: 2});
-    $('.total-wrap .hour-order').score(172, {space: 3});
-    $('.total-wrap .hour-income').score(102.89, {decimal: 2});
-    $('.total-wrap .month-order').score(126, {space: 3});
-    $('.total-wrap .month-income').score(822.09, {decimal: 2});
+    
 });

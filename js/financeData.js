@@ -2,41 +2,35 @@ export default {
     markData: [
         // coord和location与data.baseData相同
         // coord为停车场位置，location为省份经纬度
-        {name: '广西', coord: [109.018194,22.839025], location: [108.418194,22.839025]},
-        {name: '广西', coord: [108.618194,23.039025], location: [108.418194,22.839025]},
-        {name: '广西', coord: [109.499036,24.39228], location: [108.418194,22.839025]},
-        {name: '浙江', coord: [121.153576,28.987459], location: [121.153576,28.987459]},
-        {name: '浙江', coord: [121.153576,28.587459], location: [121.153576,28.987459]},
-        {name: '浙江', coord: [120.053576,28.587459], location: [121.153576,28.987459]},
-        {name: '湖南', coord: [112.644973,26.910059], location: [112.644973,26.910059]},
-        {name: '湖南', coord: [112.994522,28.213559], location: [112.644973,26.910059]},
-        {name: '贵州', coord: [106.635091,26.654039], location: [106.635091,26.654039]}
+        {name: '广西', coord: [108.399398,22.817954], location: [108.418194,22.839025]},
+        {name: '浙江', coord: [120.126623,30.225902], location: [121.153576,28.987459]},
+        {name: '浙江', coord: [120.168992,30.259104], location: [121.153576,28.987459]},
+        {name: '北京', coord: [116.320328,39.883822], location: [116.403613,39.915185]}
     ],
     mapData: [
         // 省份位置
         {name: '广西', en: 'guangxi', coord: [108.418194,22.839025]},
         {name: '浙江', en: 'zhejiang', coord: [121.153576,28.987459]},
-        {name: '湖南', en: 'hunan', coord: [112.644973,26.910059]},
-        {name: '贵州', en: 'guizhou', coord: [106.635091,26.654039]}
+        {name: '北京', en: 'beijing', coord: [116.403613,39.915185]}
     ],
     data: [
         {
             baseData: {
-                name: '五象航洋城一期智慧停车项目',
-                province: '广西',
-                city: '南宁',
-                total: 680,
-                used: 350,
-                company: '南宁市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                name: '丰台区-西三环南路14号院首科大厦智慧停车项目',
+                province: '北京',
+                city: '北京',
+                total: 1000,
+                used: 253,
+                company: '北京静态交通投资运营有限公司',
+                No: 'CH-BJ-32124000032',
+                addr: '北京市-丰台区-西三环南路14号院首科大厦',
                 type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                time: '2年1个月',
-                coord: [109.018194,22.839025], // 当前项目经纬度
-                location: [108.418194,22.839025] // 省份经纬度
+                admin: '王福文',
+                adminTel: '18688782992',
+                begin: '2020-03',
+                time: '1年3个月',
+                coord: [116.320328,39.883822], // 当前项目经纬度
+                location: [116.403613,39.915185] // 省份经纬度
             },
             statisticData: {
                 income: {
@@ -86,20 +80,20 @@ export default {
         },
         {
             baseData: {
-                name: '五象航洋城二期智慧停车项目',
+                name: '南宁市-青秀区-华润万象城智慧停车项目',
                 province: '广西',
                 city: '南宁',
-                total: 680,
-                used: 350,
-                company: '南宁市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                total: 5000,
+                used: 3281,
+                company: '华润置地（南宁）有限公司',
+                No: 'CH-GXNN-32124000024',
+                addr: '南宁市民族大道136号',
                 type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                time: '2年1个月',
-                coord: [108.618194,23.039025],
+                admin: '朱婉璇',
+                adminTel: '13372258868',
+                begin: '2020-10',
+                time: '8个月',
+                coord: [108.399398,22.817954],
                 location: [108.418194,22.839025]
             },
             statisticData: {
@@ -150,150 +144,24 @@ export default {
         },
         {
             baseData: {
-                name: '五象航洋城二期智慧停车项目',
-                province: '广西',
-                city: '柳州',
-                total: 680,
-                used: 350,
-                company: '南宁市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
-                type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                time: '2年1个月',
-                coord: [109.499036,24.39228],
-                location: [108.418194,22.839025]
-            },
-            statisticData: {
-                income: {
-                    yearIncome: 1052.25,
-                    monthIncome: 89.14,
-                    dayIncome: 3.27,
-                    yearOrder: 80.43,
-                    monthOrder: 6.72,
-                    dayOrder: 0.22,
-                    orderIncome: 18.8
-                },
-                useRate: {
-                    use: 4522,
-                    averageUse: 232,
-                    useRate: 45.22,
-                    averageRate: 32.44,
-                    turnover: 7.4,
-                    averageTurnover: 7.8
-                }
-            },
-            lineData: {
-                day: [583, 483, 392, 192, 52, 52, 58, 88, 390, 1390, 1829, 1729, 1129, 1229, 1232, 832, 729, 889, 1729, 1819, 1929, 1769, 1629, 829, 538],
-                month: [3782, 2234, 3435, 5342, 2342, 6324],
-                year: [234245, 234235, 251245, 29174]
-            },
-            pieData: {
-                day: [
-                    { name: '第三方', value: 5.9 },
-                    { name: '支付宝', value: 35.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-                month: [
-                    { name: '第三方', value: 6.9 },
-                    { name: '支付宝', value: 34.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-                year: [
-                    { name: '第三方', value: 7.9 },
-                    { name: '支付宝', value: 33.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-            },
-            video: {}
-        },
-        {
-            baseData: {
-                name: '五象航洋智慧停车项目2',
+                name: '西湖区-杭州大厦A座智慧停车项目',
                 province: '浙江',
                 city: '杭州',
-                total: 680,
-                used: 350,
-                company: '杭州市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                total: 2500,
+                used: 683,
+                company: '杭州大厦运营公司',
+                No: 'CH-ZJHZ-32124000038',
+                addr: '杭州市西湖区武林广场1号',
                 type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                coord: [121.153576,28.987459],
+                admin: '李国庆',
+                adminTel: '13872379001',
+                begin: '2020-12',
+                time: '7个月',
+                coord: [120.126623,30.225902],
                 location: [121.153576,28.987459]
             },
             statisticData: {
                 income: {
-                    yearIncome: 2052.25,
-                    monthIncome: 89.14,
-                    dayIncome: 3.27,
-                    yearOrder: 80.43,
-                    monthOrder: 6.72,
-                    dayOrder: 0.22,
-                    orderIncome: 18.8
-                },
-                useRate: {
-                    use: 4522,
-                    averageUse: 232,
-                    useRate: 45.22,
-                    averageRate: 32.44,
-                    turnover: 7.4,
-                    averageTurnover: 7.8
-                }
-            },
-            lineData: {
-                day: [583, 483, 392, 192, 52, 52, 58, 88, 390, 1390, 1829, 1729, 1129, 1229, 1232, 832, 729, 889, 1729, 1819, 1929, 1769, 1629, 829, 538],
-                month: [3782, 2234, 3435, 5342, 2342, 6324],
-                year: [234245, 234235, 251245, 29174]
-            },
-            pieData: {
-                day: [
-                    { name: '第三方', value: 10.9 },
-                    { name: '支付宝', value: 30.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-                month: [
-                    { name: '第三方', value: 6.9 },
-                    { name: '支付宝', value: 34.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-                year: [
-                    { name: '第三方', value: 7.9 },
-                    { name: '支付宝', value: 33.3 },
-                    { name: '现金', value: 17.6 },
-                    { name: '微信', value: 41.2 }
-                ],
-            },
-            video: {}
-        },
-        {
-            baseData: {
-                name: '五象航洋智慧停车项目3',
-                province: '湖南',
-                city: '长沙',
-                total: 680,
-                used: 350,
-                company: '长沙市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
-                type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                coord: [112.644973,26.910059],
-                location: [112.644973,26.910059]
-            },
-            statisticData: {
-                income: {
                     yearIncome: 1052.25,
                     monthIncome: 89.14,
                     dayIncome: 3.27,
@@ -340,20 +208,21 @@ export default {
         },
         {
             baseData: {
-                name: '五象航洋智慧停车项目4',
-                province: '贵州',
-                city: '贵阳',
-                total: 680,
-                used: 350,
-                company: '贵阳市智慧停车有限公司',
-                No: 'CH-32124000032',
-                addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                name: '上城区-湖滨银泰广场智慧停车项目',
+                province: '浙江',
+                city: '杭州',
+                total: 2000,
+                used: 891,
+                company: '北京银泰裕盛商业管理顾问有限公司',
+                No: 'CH-ZJHZ-32124000029',
+                addr: '杭州市上城区东坡路7号',
                 type: '停车场',
-                admin: '张红丽',
-                adminTel: '13522220000',
-                begin: '2019-03',
-                coord: [106.635091,26.654039],
-                location: [106.635091,26.654039]
+                admin: '林一岚',
+                adminTel: '18599226224',
+                begin: '2021-01',
+                time: '6个月',
+                coord: [120.168992,30.259104],
+                location: [121.153576,28.987459]
             },
             statisticData: {
                 income: {
@@ -407,20 +276,87 @@ export default {
         guangxi: [
             {
                 baseData: {
-                    name: '五象航洋城一期智慧停车项目',
+                    name: '南宁市-青秀区-华润万象城智慧停车项目',
                     province: '广西',
                     city: '南宁',
-                    total: 680,
-                    used: 350,
-                    company: '南宁市智慧停车有限公司',
-                    No: 'CH-32124000032',
-                    addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                    total: 5000,
+                    used: 3281,
+                    company: '华润置地（南宁）有限公司',
+                    No: 'CH-GXNN-32124000024',
+                    addr: '南宁市民族大道136号',
                     type: '停车场',
-                    admin: '张红丽',
-                    adminTel: '13522220000',
-                    begin: '2019-03',
-                    coord: [109.018194,22.839025],
+                    admin: '朱婉璇',
+                    adminTel: '13372258868',
+                    begin: '2020-10',
+                    time: '8个月',
+                    coord: [108.399398,22.817954],
                     location: [108.418194,22.839025]
+                },
+                statisticData: {
+                    income: {
+                        yearIncome: 1052.25,
+                        monthIncome: 89.14,
+                        dayIncome: 3.27,
+                        yearOrder: 80.43,
+                        monthOrder: 6.72,
+                        dayOrder: 0.22,
+                        orderIncome: 18.8
+                    },
+                    useRate: {
+                        use: 4522,
+                        averageUse: 232,
+                        useRate: 45.22,
+                        averageRate: 32.44,
+                        turnover: 7.4,
+                        averageTurnover: 7.8
+                    }
+                },
+                lineData: {
+                    day: [583, 483, 392, 192, 52, 52, 58, 88, 390, 1390, 1829, 1729, 1129, 1229, 1232, 832, 729, 889, 1729, 1819, 1929, 1769, 1629, 829, 538],
+                    month: [3782, 2234, 3435, 5342, 2342, 6324],
+                    year: [234245, 234235, 251245, 29174]
+                },
+                pieData: {
+                    day: [
+                        { name: '第三方', value: 5.9 },
+                        { name: '支付宝', value: 35.3 },
+                        { name: '现金', value: 17.6 },
+                        { name: '微信', value: 41.2 }
+                    ],
+                    month: [
+                        { name: '第三方', value: 6.9 },
+                        { name: '支付宝', value: 34.3 },
+                        { name: '现金', value: 17.6 },
+                        { name: '微信', value: 41.2 }
+                    ],
+                    year: [
+                        { name: '第三方', value: 7.9 },
+                        { name: '支付宝', value: 33.3 },
+                        { name: '现金', value: 17.6 },
+                        { name: '微信', value: 41.2 }
+                    ],
+                },
+                video: {}
+            }
+        ],
+         zhejiang: [
+            {
+                baseData: {
+                    name: '上城区-湖滨银泰广场智慧停车项目',
+                    province: '浙江',
+                    city: '杭州',
+                    total: 2000,
+                    used: 891,
+                    company: '北京银泰裕盛商业管理顾问有限公司',
+                    No: 'CH-ZJHZ-32124000029',
+                    addr: '杭州市上城区东坡路7号',
+                    type: '停车场',
+                    admin: '林一岚',
+                    adminTel: '18599226224',
+                    begin: '2021-01',
+                    time: '6个月',
+                    coord: [120.168992,30.259104],
+                    location: [121.153576,28.987459]
                 },
                 statisticData: {
                     income: {
@@ -470,20 +406,21 @@ export default {
             },
             {
                 baseData: {
-                    name: '五象航洋城二期智慧停车项目',
-                    province: '广西',
-                    city: '南宁',
-                    total: 680,
-                    used: 350,
-                    company: '南宁市智慧停车有限公司',
-                    No: 'CH-32124000032',
-                    addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                    name: '西湖区-杭州大厦A座智慧停车项目',
+                    province: '浙江',
+                    city: '杭州',
+                    total: 2500,
+                    used: 683,
+                    company: '杭州大厦运营公司',
+                    No: 'CH-ZJHZ-32124000038',
+                    addr: '杭州市西湖区武林广场1号',
                     type: '停车场',
-                    admin: '张红丽',
-                    adminTel: '13522220000',
-                    begin: '2019-03',
-                    coord: [108.618194,23.039025],
-                    location: [108.418194,22.839025]
+                    admin: '李国庆',
+                    adminTel: '13872379001',
+                    begin: '2020-12',
+                    time:'7个月',
+                    coord: [120.126623,30.225902],
+                    location: [121.153576,28.987459]
                 },
                 statisticData: {
                     income: {
@@ -530,23 +467,26 @@ export default {
                     ],
                 },
                 video: {}
-            },
+            }
+        ],
+        beijing: [
             {
                 baseData: {
-                    name: '五象航洋城二期智慧停车项目',
-                    province: '广西',
-                    city: '柳州',
-                    total: 680,
-                    used: 350,
-                    company: '南宁市智慧停车有限公司',
-                    No: 'CH-32124000032',
-                    addr: '南宁市良庆区平乐大道2号五象航洋城B1',
+                    name: '丰台区-西三环南路14号院首科大厦智慧停车项目',
+                    province: '北京',
+                    city: '北京',
+                    total: 1000,
+                    used: 253,
+                    company: '北京静态交通投资运营有限公司',
+                    No: 'CH-BJ-32124000032',
+                    addr: '北京市-丰台区-西三环南路14号院首科大厦',
                     type: '停车场',
-                    admin: '张红丽',
-                    adminTel: '13522220000',
-                    begin: '2019-03',
-                    coord: [109.499036,24.39228],
-                    location: [109.499036,24.39228]
+                    admin: '王福文',
+                    adminTel: '18688782992',
+                    begin: '2020-03',
+                    time: '1年3个月',
+                    coord: [116.320328,39.883822],
+                    location: [116.403613,39.915185]
                 },
                 statisticData: {
                     income: {
