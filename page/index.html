@@ -41,34 +41,61 @@
 
     <div class="content clearfix">
         <div class="left">
-            <div class="top-number-bar number-box-shadow">
+            <div class="top-number-bar number-box-shadow" id="J_top_number_1">
                 <div class="item" style="width: 120px; flex: none;">
                     <div class="title">已点亮省份</div>
-                    <div class="number gradient-number score province"></div>
+                    <div class="number gradient-number province"></div>
                 </div>
                 <div class="item" style="width: 150px; flex: none;">
                     <div class="title">项目数(个)</div>
-                    <div class="number gradient-number score project"></div>
+                    <div class="number gradient-number project"></div>
                 </div>
                 <div class="item">
                     <div class="title">总车位(个)</div>
-                    <div class="number gradient-number score position"></div>
+                    <div class="number gradient-number position"></div>
                 </div>
                 <div class="item">
                     <div class="title">泊位利用率</div>
-                    <div class="number gradient-number score rate"><span>%</span></div>
+                    <div class="number gradient-number rate"><span>%</span></div>
                 </div>
                 <div class="item">
                     <div class="title">服务车主数(万人)</div>
-                    <div class="number gradient-number score people"></div>
+                    <div class="number gradient-number people"></div>
                 </div>
                 <div class="item">
                     <div class="title">设备价值(万元)</div>
-                    <div class="number gradient-number score equipment"></div>
+                    <div class="number gradient-number equipment"></div>
                 </div>
                 <div class="item">
                     <div class="title">累计收入(万元)</div>
-                    <div class="number gradient-number score total"></div>
+                    <div class="number gradient-number total"></div>
+                </div>
+            </div>
+
+            <div class="top-number-bar number-box-shadow" id="J_top_number_2" style="display: none;">
+                <div class="item">
+                    <div class="title">地磁检测(个)</div>
+                    <div class="number gradient-number check"></div>
+                </div>
+                <div class="item">
+                    <div class="title">高位视频(个)</div>
+                    <div class="number gradient-number video"></div>
+                </div>
+                <div class="item">
+                    <div class="title">车位锁(个)</div>
+                    <div class="number gradient-number lock"></div>
+                </div>
+                <div class="item">
+                    <div class="title">巡逻车(辆)</div>
+                    <div class="number gradient-number car"><span>%</span></div>
+                </div>
+                <div class="item">
+                    <div class="title">POS机(台)</div>
+                    <div class="number gradient-number pos"></div>
+                </div>
+                <div class="item">
+                    <div class="title">运维技师(人)</div>
+                    <div class="number gradient-number tech"></div>
                 </div>
             </div>
             <div class="map" id="J_map"></div>
@@ -109,15 +136,15 @@
                     </div>
                     <div class="item number-box-shadow">
                         <div class="title">今日收入(万元)</div>
-                        <div class="number gradient-number total"></div>
+                        <div class="number gradient-number income"></div>
                     </div>
                     <div class="item number-box-shadow">
                         <div class="title">泊位利用率</div>
-                        <div class="number gradient-number rate1"><span>%</span></div>
+                        <div class="number gradient-number use"><span>%</span></div>
                     </div>
                     <div class="item number-box-shadow">
                         <div class="title">泊位周转率</div>
-                        <div class="number gradient-number rate2"><span>%</span></div>
+                        <div class="number gradient-number overturn"><span>%</span></div>
                     </div>
                 </div>
             </div>
@@ -127,15 +154,15 @@
                 <div class="item-wrap">
                     <div class="item number-box-shadow">
                         <div class="title">平均订单收入(万元)</div>
-                        <div class="number gradient-number total"></div>
+                        <div class="number gradient-number average-income"></div>
                     </div>
                     <div class="item number-box-shadow">
                         <div class="title">实时使用泊位</div>
-                        <div class="number gradient-number count"></div>
+                        <div class="number gradient-number actual-use"></div>
                     </div>
                     <div class="item number-box-shadow">
                         <div class="title">实时泊位利用率</div>
-                        <div class="number gradient-number rate"><span>%</span></div>
+                        <div class="number gradient-number actual-overturn"><span>%</span></div>
                     </div>
                 </div>
             </div>

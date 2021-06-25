@@ -7,7 +7,9 @@ export default {
             {name: '浙江', en: 'zhejiang', value: 24.7, coord: [120.141739,30.291447], cityData: [
                 {name:'杭州市', value: 24.7, coord: [120.168992,30.259104]}
             ]},
-            {name: '北京', en: 'beijing', value: 3.8, coord: [116.434739,39.912057]},
+            {name: '北京', en: 'beijing', value: 3.8, coord: [116.434739,39.912057], cityData: [
+                {name: '北京', en: 'beijing', value: 3.8, coord: [116.434739,39.912057]}
+            ]},
             {name: '安徽', en: 'anhui', value: 10.4, coord: [117.234816,31.832393], cityData:[
                 {name: '铜陵市', value: 8.2, coord:[117.822505,30.952967]},
                 {name: '合肥市', value: 2.2, coord:[117.234816,31.832393]}]

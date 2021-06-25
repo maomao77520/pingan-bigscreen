@@ -181,7 +181,7 @@ function getMapOptions({map = 'china', aspectScale=0.7, mapData, markData, scatt
                 label: {
                     show: false
                 },
-                data: totalData.markData
+                data: markData
             }
         },  {
             type: 'scatter',
@@ -234,7 +234,7 @@ function initMap() {
     mapData[0].selected = true;
     let option = getMapOptions({
         mapData: mapData,
-        // markData: totalData.markData,
+        markData: totalData.markData,
         scatterData: [{
             name: mapData[0].name,
             value: mapData[0].coord,
@@ -288,10 +288,11 @@ function initMap() {
             mapType = param.name;
             $.getScript(`../lib/map/${param.data.en}.js`, function() {
                 $('#J_map_icon').show();
-                
+
                 let provinceOptions = getMapOptions({
                     map: param.name,
                     mapData: provinceData,
+                    markData: totalData.markData.filter(item => item.name == param.name),
                     max: common.getMax(provinceData),
                     scatterData: [{
                         name: provinceData[0].name,
@@ -318,6 +319,7 @@ function initMap() {
                     
                     let option = getMapOptions({
                         mapData: mapData,
+                        markData: totalData.markData,
                         min: 0,
                         max: common.getMax(mapData),
                         scatterData: [{

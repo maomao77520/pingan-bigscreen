@@ -99,8 +99,8 @@ function getMapOptions({map = 'china', zoom=1.15, aspectScale=0.7, mapData, scat
         geo: [{
 			map: map,
 			zoom: zoom,
-            left: 80,
-            right: 250,
+            left: map == 'china' ? 80 : 230,
+            right: map == 'china' ? 250: 100,
             top: 60,
             bottom: mapBottom,
 			aspectScale: aspectScale,
@@ -112,8 +112,8 @@ function getMapOptions({map = 'china', zoom=1.15, aspectScale=0.7, mapData, scat
             z: 2,
             aspectScale: aspectScale,
             zoom: zoom,
-            left: 80,
-            right: 250,
+            left: map == 'china' ? 80 : 230,
+            right: map == 'china' ? 250: 100,
             top: 60,
             bottom: mapBottom,
             label: {
@@ -390,6 +390,8 @@ function initMap() {
                 });
                 provinceData[0].selected = true;
                 map.setOption(provinceOptions);
+                $('#J_top_item_title').html('点亮城市(个)');
+
                 var cityIndex = provinceData.findIndex(item => item.coord[0] == stations[0].coord[0] && item.coord[1] == stations[0].coord[1]);
                 
                 function pLoop(mapData, option) {
@@ -425,6 +427,7 @@ function initMap() {
                     mapData[0].selected = true;
                     
                     map.setOption(option);
+                    $('#J_top_item_title').html('点亮省份(个)');
                     loop(mapData, option);
                     $('#J_map_icon').hide();
                 });

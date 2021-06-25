@@ -1,4 +1,19 @@
 export default {
+    topNumber: {
+        province: 2,
+        project: 10,
+        position: 45090,
+        rate: 90.6,
+        people: 75639,
+        equipment: 5639,
+        total: 295639,
+        check: 45090,
+        video: 2586,
+        lock: 45090,
+        car: 245,
+        pos: 142,
+        tech: 453
+    },
     listData: [
         {info: '浙A D68**3', time: '2021-6-28 12:02:12', duration: '2:02:35', area: '浙江-杭州-西湖区-杭州大厦A座B1层', total: '10.00'},
         {info: '桂A D313*9', time: '2021-6-28 13:22:53', duration: '4:02:55', area: '广西-南宁-青秀区-华润万象城地下停车场', total: '20.00'},
@@ -67,5 +82,14 @@ export default {
 
             ]
         }
-    ]
+    ],
+    rightBoxNumber: {
+        order: 23056,
+        income: 123,
+        use: 12,
+        overturn: 7.4,
+        averageIncome: 10.5,
+        actualUse: 43886,
+        actualOverturn: 97.4,
+    }
 };

@@ -251,7 +251,7 @@ export default {
                 data: [180, 220, 190, 210, 90]
             }
         },
-        zhejaing: {
+        zhejiang: {
             hour: {
                 category: ['30min内', '30-59min', '60-89min', '90-119min', '120min及以上'],
                 data: [90, 200, 180, 120, 80]

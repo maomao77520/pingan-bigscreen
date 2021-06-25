@@ -6,26 +6,64 @@ import base from '../lib/base.js';
 
 import totalData from './indexData';
 
-const INTERVAL = 2000;
+const INTERVAL = 3000;
 const ICON = 'image://../image/icon.png';
 const ACICON = 'image://../image/icon-active.png';
 
 
 // 左上数字栏
-function initLTBar() {
-    $('.top-number-bar .province').score(2);
-    $('.top-number-bar .project').score(10);
-    $('.top-number-bar .position').score(45090, {space: 3});
-    $('.top-number-bar .rate').score(90.6, {decimal: 1});
-    $('.top-number-bar .people').score(75639, {space: 3});
-    $('.top-number-bar .equipment').score(5639, {decimal: 2});
-    $('.top-number-bar .total').score(295639, {space: 3});
+function initLTBar(data) {
+    function initBox1() {
+        // var cl;
+        // $('#J_top_number_1 .item').each(function(i, n) {
+        //     cl = $(this).find('.number').attr('class');
+        //     $(this).find('.number').remove();
+        //     $(this).append(`<div class="${cl}"></div>`);
+        // });
+
+        $('#J_top_number_1 .province').score(data.province);
+        $('#J_top_number_1 .project').score(data.project);
+        $('#J_top_number_1 .position').score(data.position, {space: 3});
+        $('#J_top_number_1 .rate').score(data.rate, {decimal: 1});
+        $('#J_top_number_1 .people').score(data.people, {space: 3});
+        $('#J_top_number_1 .equipment').score(data.equipment, {decimal: 2});
+        $('#J_top_number_1 .total').score(data.total, {space: 3});
+    }
+    
+    function initBox2() {
+        // var cl;
+        // $('#J_top_number_2 .item').each(function(i, n) {
+        //     cl = $(this).find('.number').attr('class');
+        //     $(this).find('.number').remove();
+        //     $(this).append(`<div class="${cl}"></div>`);
+        // });
+        $('#J_top_number_2 .check').score(data.check, {space: 3});
+        $('#J_top_number_2 .video').score(data.video, {space: 3});
+        $('#J_top_number_2 .lock').score(data.lock, {space: 3});
+        $('#J_top_number_2 .car').score(data.car);
+        $('#J_top_number_2 .pos').score(data.pos, {space: 3});
+        $('#J_top_number_2 .tech').score(data.tech, {decimal: 2});
+    }
+    initBox1();
+    var i = 0;
+    var flag = false;
+    setInterval(() => {
+        if (!flag) {
+            initBox2();
+            flag = true;
+        }
+        i = (i + 1) % $('.top-number-bar').length;
+        $('.top-number-bar').hide();
+        $('.top-number-bar').eq(i).show();
+        
+    }, INTERVAL);
+
 }
 
 // 左下滚动列表
-function initLBList() {
+function initLBList(data) {
     let tmp = doT.template($('#J_lb_list_tmp').html());
-    $('#J_lb_list').html(tmp(totalData.listData));
+    $('#J_lb_list').html(tmp(data));
 
     
     let aniList = function () {
@@ -46,7 +84,7 @@ function initLBList() {
     }, 2000);
 }
 
-function initRightLine () {
+function initRightLine (data) {
     let options = {
         grid: {
             top: 30,
@@ -122,7 +160,7 @@ function initRightLine () {
                 symbol: ['none', 'none'],
                 label: {show: false},
             },
-            data: totalData.lineData.today
+            data: data.today
         }]
     };
     let line = echarts.init(document.getElementById('J_right_line'));
@@ -163,17 +201,17 @@ function initRightLine () {
             if (name == '7days') {
                 options.xAxis.data = getDays(7);
                 options.xAxis.axisLabel.interval = 0;
-                options.series[0].data = totalData.lineData.sevenDays;
+                options.series[0].data = data.sevenDays;
                 line.setOption(options);
             } else if (name == '30days') {
                 options.xAxis.data = getDays(30);
                 options.xAxis.axisLabel.interval = 3;
-                options.series[0].data = totalData.lineData.month;
+                options.series[0].data = data.month;
                 line.setOption(options);
             } else {
                 options.xAxis.data = common.getMonth('月');
                 options.xAxis.axisLabel.interval = 0;
-                options.series[0].data = totalData.lineData.year;
+                options.series[0].data = data.year;
                 line.setOption(options);
             }
         }
@@ -190,7 +228,7 @@ function getDays(days) {
 }
 
 
-function initRightPie () {
+function initRightPie (data) {
     let options = {
         series: [{
             type: 'pie',
@@ -208,15 +246,14 @@ function initRightPie () {
                 length: 5,
                 length2: 10
             },
-            data: totalData.pieData
+            data: data
         }]
     };
     let pie = echarts.init(document.getElementById('J_pie'));
     pie.setOption(options);
 }
 
-function initMap() {
-    let data = totalData.mapData;
+function initMap(data) {
 
     data.map(item => {item.itemStyle = {areaColor: '#008EFA'}});
     data[0].selected = true;
@@ -367,24 +404,28 @@ function initMap() {
     }
 }
 
+function initRightBoxNumber(data) {
+    $('.today-index .order').score(data.order, {space: 3});
+    $('.today-index .income').score(data.income, {space: 3});
+    $('.today-index .use').score(data.use, {decimal: 1});
+    $('.today-index .overturn').score(data.overturn, {decimal: 1});
+    
+    $('.now-index .average-income').score(data.averageIncome, {decimal: 1});
+    $('.now-index .actual-use').score(data.actualUse, {space: 3});
+    $('.now-index .actual-overturn').score(data.actualOverturn, {decimal: 1});
+}
+
 $(document).ready(function() {
     common.headerTime();
     common.initMenu();
-    initLTBar();
-    initLBList();
+    initLTBar(totalData.topNumber);
+    initLBList(totalData.listData);
 
-    initMap();
+    initMap(totalData.mapData);
 
-    initRightLine();
-    initRightPie();
+    initRightLine(totalData.lineData);
+    initRightPie(totalData.pieData);
+    initRightBoxNumber(totalData.rightBoxNumber);
 
-
-    $('.today-index .order').score(23056, {space: 3});
-    $('.today-index .total').score(123, {space: 3});
-    $('.today-index .rate1').score(12, {decimal: 1});
-    $('.today-index .rate2').score(7.4, {decimal: 1});
     
-    $('.now-index .total').score(10.5, {decimal: 1});
-    $('.now-index .count').score(43886, {space: 3});
-    $('.now-index .rate').score(97.4, {decimal: 1});
 });
